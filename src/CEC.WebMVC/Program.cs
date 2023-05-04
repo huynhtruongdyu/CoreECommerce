@@ -29,9 +29,21 @@ var app = builder.Build();
 
     app.UseAuthorization();
 
-    app.MapControllerRoute(
-        name: "default",
-        pattern: "{controller=Home}/{action=Index}/{id?}");
+    app.UseEndpoints(endpoints =>
+    {
+        endpoints.MapAreaControllerRoute(
+            name: "defaultArea",
+            areaName: "Marketing",
+            pattern: "{controller=Home}/{action=Index}/{id?}");
+        endpoints.MapControllerRoute(
+          name: "areas",
+          pattern: "{area:exists}/{controller=Home}/{action=Index}/{id?}"
+        );
+    });
+
+    //app.MapControllerRoute(
+    //    name: "default",
+    //    pattern: "{controller=Home}/{action=Index}/{id?}");
 
     app.Run();
 }
