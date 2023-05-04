@@ -6,4 +6,12 @@
     <Nullable>enable</Nullable>
   </PropertyGroup>
 
+  <ItemGroup>
+    <Folder Include="EntityConfigurations\" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\CEC.Application\CEC.Application.csproj" />
+  </ItemGroup>
+
 </Project>

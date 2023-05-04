@@ -23,4 +23,10 @@
     <Folder Include="Areas\Marketing\Models\" />
   </ItemGroup>
 
+  <ItemGroup>
+    <ProjectReference Include="..\CEC.Application\CEC.Application.csproj" />
+    <ProjectReference Include="..\CEC.Persistent\CEC.Persistent.csproj" />
+    <ProjectReference Include="..\CEC.Shared\CEC.Shared.csproj" />
+  </ItemGroup>
+
 </Project>

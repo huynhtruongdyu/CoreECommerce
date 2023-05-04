@@ -1,8 +1,20 @@
+using CEC.Application.Abstractions.Contexts;
+using CEC.Persistent;
+using CEC.Persistent.Contexts;
+
+using Microsoft.EntityFrameworkCore;
+
 using System.Globalization;
 
 var builder = WebApplication.CreateBuilder(args);
 {
     builder.Services.AddControllersWithViews();
+    builder.Services.AddDbContext<ApplicationDbContext>(config =>
+    {
+        var connectionString = builder.Configuration.GetConnectionString("DefaultConnection");
+        config.UseSqlServer(connectionString, b => b.MigrationsAssembly(typeof(PersistentAssemblyReference).Assembly.GetName().Name));
+    });
+    builder.Services.AddScoped<IApplicationDbContext, ApplicationDbContext>();
 }
 
 var app = builder.Build();
