@@ -1,20 +1,14 @@
-using CEC.Application.Abstractions.Contexts;
-using CEC.Persistent;
-using CEC.Persistent.Contexts;
-
-using Microsoft.EntityFrameworkCore;
+using CEC.Infrastructure.Extensions;
+using CEC.Shared.Options;
 
 using System.Globalization;
 
 var builder = WebApplication.CreateBuilder(args);
 {
     builder.Services.AddControllersWithViews();
-    builder.Services.AddDbContext<ApplicationDbContext>(config =>
-    {
-        var connectionString = builder.Configuration.GetConnectionString("DefaultConnection");
-        config.UseSqlServer(connectionString, b => b.MigrationsAssembly(typeof(PersistentAssemblyReference).Assembly.GetName().Name));
-    });
-    builder.Services.AddScoped<IApplicationDbContext, ApplicationDbContext>();
+    builder.Services.Configure<GlobalAppsettings>(x => builder.Configuration.Bind(x));
+    builder.Services.RegisterService();
+    builder.Services.AddAndMigrateTenantDatabases();
 }
 
 var app = builder.Build();
@@ -22,7 +16,6 @@ var app = builder.Build();
     if (!app.Environment.IsDevelopment())
     {
         app.UseExceptionHandler("/Home/Error");
-        // The default HSTS value is 30 days. You may want to change this for production scenarios, see https://aka.ms/aspnetcore-hsts.
         app.UseHsts();
     }
 
@@ -31,7 +24,7 @@ var app = builder.Build();
     {
         OnPrepareResponse = ctx =>
         {
-            // Cache static files for 30 days
+            // Cache static files for 1 minute
             ctx.Context.Response.Headers.Append("Cache-Control", "public,max-age=60");
             ctx.Context.Response.Headers.Append("Expires", DateTime.UtcNow.AddMinutes(1).ToString("R", CultureInfo.InvariantCulture));
         }
@@ -41,22 +34,14 @@ var app = builder.Build();
 
     app.UseAuthorization();
 
-    app.UseEndpoints(endpoints =>
-    {
-        endpoints.MapAreaControllerRoute(
-            name: "defaultArea",
-            areaName: "Marketing",
-            pattern: "{controller=Home}/{action=Index}/{id?}");
+    app.MapAreaControllerRoute(
+        name: "defaultArea",
+        areaName: "Marketing",
+        pattern: "{controller=Home}/{action=Index}/{id?}");
 
-        endpoints.MapControllerRoute(
-          name: "areas",
-          pattern: "{area:exists}/{controller=Home}/{action=Index}/{id?}"
-        );
-    });
-
-    //app.MapControllerRoute(
-    //    name: "default",
-    //    pattern: "{controller=Home}/{action=Index}/{id?}");
+    app.MapControllerRoute(
+        name: "default",
+        pattern: "{controller=Home}/{action=Index}/{id?}");
 
     app.Run();
 }

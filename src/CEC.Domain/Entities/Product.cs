@@ -3,7 +3,7 @@ using CEC.Domain.Enums;
 
 namespace CEC.Domain.Entities
 {
-    public class Product : AuditEntity<Guid>, ISoftDeleteEntity
+    public class Product : AuditEntity<long>, ISoftDeleteEntity
     {
         public string Name { get; set; }
         public string Brief { get; set; }
