@@ -1,4 +1,4 @@
-namespace CEC.WebMVC.Models
+﻿namespace CEC.Shared.Models
 {
     public class ErrorViewModel
     {

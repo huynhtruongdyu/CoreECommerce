@@ -47,6 +47,7 @@ var app = builder.Build();
             name: "defaultArea",
             areaName: "Marketing",
             pattern: "{controller=Home}/{action=Index}/{id?}");
+
         endpoints.MapControllerRoute(
           name: "areas",
           pattern: "{area:exists}/{controller=Home}/{action=Index}/{id?}"

@@ -1,4 +1,4 @@
-﻿using CEC.WebMVC.Models;
+﻿using CEC.Shared.Models;
 
 using Microsoft.AspNetCore.Mvc;
 
