@@ -364,3 +364,5 @@ FodyWeavers.xsd
 /src/CEC.WebMVC/DemoECommerce.db
 /src/CEC.WebMVC/DemoECommerce.db-shm
 /src/CEC.WebMVC/DemoECommerce.db-wal
+/src/CEC.WebMVC/wwwroot/upload/*
+!/src/CEC.WebMVC/wwwroot/upload/.gitkeep

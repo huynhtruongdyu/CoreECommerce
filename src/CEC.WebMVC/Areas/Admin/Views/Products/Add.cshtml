@@ -27,11 +27,29 @@
                 <label asp-for="Brief" class="form-label"></label>
                 <input asp-for="Brief" type="text" class="form-control" />
             </div>
+            <div class="form-group mb-3">
+                <label asp-for="Description" class="form-label"></label><br/>
+                <textarea asp-for="Description" class="form-control"></textarea>
+            </div>
+            <input type="text" hidden asp-for="ThumbnailUrl" name="ThumbnailUrl" id="ThumbnailUrl"/>
             <button type="submit" class="btn btn-primary mt-2">Submit</button>
         </form>
     </div>
+    <div class="col-md-6">
+        
+        <form method="post" enctype="multipart/form-data" id="formImageUpload" action="/File/UploadFile">
+            <div class="form-group mb-3">
+                <label for="file" class="form-label"></label>
+                <input name="file" id="file" type="file" class="form-control"/>
+                <input type="submit" value="Upload" class="btn btn-outline-primary mt-2" />
+            </div>
+        </form>
+        <div class="text-center" id="product-thumbnail-el">
+            
+        </div>
+    </div>
 </div>
-
 @section Scripts {
     @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+   <script src="~/js/admin/products/add.js"></script>
 }
