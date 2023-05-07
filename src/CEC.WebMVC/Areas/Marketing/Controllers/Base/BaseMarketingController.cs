@@ -2,7 +2,7 @@
 
 namespace CEC.WebMVC.Areas.Marketing.Controllers.Base
 {
-    [Area("marketing")]
+    [Area("Marketing")]
     public abstract class BaseMarketingController : Controller
     {
     }

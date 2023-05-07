@@ -9,12 +9,20 @@
   <ItemGroup>
     <Compile Remove="Areas\Accounts\**" />
     <Compile Remove="Areas\Cart\**" />
+    <Compile Remove="Areas\Marketing\Data\**" />
+    <Compile Remove="Areas\Marketing\Models\**" />
     <Content Remove="Areas\Accounts\**" />
     <Content Remove="Areas\Cart\**" />
+    <Content Remove="Areas\Marketing\Data\**" />
+    <Content Remove="Areas\Marketing\Models\**" />
     <EmbeddedResource Remove="Areas\Accounts\**" />
     <EmbeddedResource Remove="Areas\Cart\**" />
+    <EmbeddedResource Remove="Areas\Marketing\Data\**" />
+    <EmbeddedResource Remove="Areas\Marketing\Models\**" />
     <None Remove="Areas\Accounts\**" />
     <None Remove="Areas\Cart\**" />
+    <None Remove="Areas\Marketing\Data\**" />
+    <None Remove="Areas\Marketing\Models\**" />
   </ItemGroup>
 
   <ItemGroup>
@@ -23,11 +31,6 @@
       <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
     </PackageReference>
     <PackageReference Include="Microsoft.VisualStudio.Web.CodeGeneration.Design" Version="7.0.6" />
-  </ItemGroup>
-
-  <ItemGroup>
-    <Folder Include="Areas\Marketing\Data\" />
-    <Folder Include="Areas\Marketing\Models\" />
   </ItemGroup>
 
   <ItemGroup>
