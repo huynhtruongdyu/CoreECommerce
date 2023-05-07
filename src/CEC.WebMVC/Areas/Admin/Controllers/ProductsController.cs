@@ -59,5 +59,12 @@ namespace CEC.WebMVC.Areas.Admin.Controllers
             }
             return RedirectToAction("Index");
         }
+
+        public async Task<ActionResult> Detail(long id)
+        {
+            var rawProduct = await _context.Products.FindAsync(id);
+            var product = new ProductDetailModel(rawProduct);
+            return View(product);
+        }
     }
 }

@@ -1,0 +1,37 @@
+﻿@model ProductDetailModel;
+@{
+    ViewData["Title"] = "Detail";
+    Layout = "~/Areas/Admin/Views/Shared/_Layout.cshtml";
+}
+
+<h1 class="mt-2">@Model.Name</h1>
+
+<nav aria-label="breadcrumb">
+    <ol class="breadcrumb">
+        <li class="breadcrumb-item"><a href="/Admin">Home</a></li>
+        <li class="breadcrumb-item"><a href="/Admin/Products">Products</a></li>
+        <li class="breadcrumb-item active" aria-current="page">Detail</li>
+    </ol>
+</nav>
+<div class="row">
+    <div class="col-8">
+        <div class="form-group mb-3">
+            <label asp-for="Brief" class="form-label"></label><br />
+            <input asp-for="Brief" class="form-control" type=" text" disabled />
+        </div>
+        <div class="form-group mb-3">
+            <label asp-for="Description" class="form-label"></label><br />
+            <textarea asp-for="Description" class="form-control" disabled></textarea>
+        </div>
+    </div>
+    <div class="col-4">
+        @if (String.IsNullOrEmpty(Model.ThumbnailUrl))
+        {
+            <img src="/images/no_image_placeholder.jpg" class="img-thumbnail" />
+        }
+        else
+        {
+            <img src="@($"/{Model.ThumbnailUrl}")" class="img-thumbnail"/>
+        }
+    </div>
+</div>

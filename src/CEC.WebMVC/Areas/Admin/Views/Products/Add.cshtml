@@ -4,6 +4,7 @@
     ViewData["Title"] = "Add";
     Layout = "~/Areas/Admin/Views/Shared/_Layout.cshtml";
 }
+
 <h1 class="mt-2">Add new</h1>
 
 <nav aria-label="breadcrumb">
@@ -13,8 +14,9 @@
         <li class="breadcrumb-item active" aria-current="page">Add new</li>
     </ol>
 </nav>
+
 <div class="row">
-    <div class="col-md-6">
+    <div class="col-md-8">
         
         <form method="post" asp-action="Add">
             <div asp-validation-summary="ModelOnly"></div>
@@ -35,12 +37,14 @@
             <button type="submit" class="btn btn-primary mt-2">Submit</button>
         </form>
     </div>
-    <div class="col-md-6">
-        
+    <div class="col-md-4">
+        @*TODO: Implement preview before upload*@
+        @*src: https://homiedev.com/preview-image-js/*@
+        @*src: https://khalidabuhakmeh.com/client-side-image-previews-with-javascript*@
         <form method="post" enctype="multipart/form-data" id="formImageUpload" action="/File/UploadFile">
             <div class="form-group mb-3">
                 <label for="file" class="form-label"></label>
-                <input name="file" id="file" type="file" class="form-control"/>
+                <input name="file" id="file" type="file" class="form-control" accept="image/png, image/gif, image/jpeg  " />
                 <input type="submit" value="Upload" class="btn btn-outline-primary mt-2" />
             </div>
         </form>

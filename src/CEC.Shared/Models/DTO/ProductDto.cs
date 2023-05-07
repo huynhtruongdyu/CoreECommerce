@@ -42,4 +42,20 @@ namespace CEC.Shared.Models.DTO
             };
         }
     }
+
+    public class ProductDetailModel
+    {
+        public string Name { get; set; }
+        public string Brief { get; set; }
+        public string Description { get; set; }
+        public string ThumbnailUrl { get; set; }
+
+        public ProductDetailModel(Product product)
+        {
+            this.Name = product.Name;
+            this.Brief = product.Brief;
+            this.Description = product.Description;
+            this.ThumbnailUrl = product.ThumbnailUrl;
+        }
+    }
 }

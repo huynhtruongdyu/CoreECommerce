@@ -45,7 +45,7 @@
                             @if (String.IsNullOrEmpty(product.ThumbnailUrl))
                             {
                                 <img src="~/images/no_image_placeholder.jpg" style="height:100px; width:100px;" loading="lazy" class="img-thumbnail" />
-                                
+
                             }
                             else
                             {
@@ -57,9 +57,8 @@
                         <td>@product.Brief</td>
                         <td style="width:150px;">
                             <div class="w-100 d-flex justify-content-center align-items-center">
-
                                 <div class="btn-group " role="group" aria-label="Basic example">
-                                    <button type="button" class="btn btn-outline-secondary">Detail</button>
+                                    <a role="button" class="btn btn-outline-secondary" asp-area="Admin" asp-controller="Products" asp-action="Detail" asp-route-id="@product.Id">Detail</a>
                                     <button type="button" class="btn btn-outline-primary">Edit</button>
                                     <form method="post" asp-action="Delete">
                                         <input name="id" value="@product.Id" hidden />

@@ -7,17 +7,30 @@ namespace CEC.WebMVC.Controllers
         [HttpPost]
         public async Task<JsonResult> UploadFileAsync(IFormFile file)
         {
-            if (file != null && file.Length > 0)
+            try
             {
-                var fileName = DateTimeOffset.UtcNow.ToUnixTimeSeconds().ToString() + Path.GetExtension(file.FileName);
-                var filePath = Path.Combine(Directory.GetCurrentDirectory(), @"wwwroot\upload", fileName);
-                using (var fileStream = new FileStream(filePath, FileMode.Create))
+                if (file != null && file.Length > 0)
                 {
-                    await file.CopyToAsync(fileStream);
+                    var fileSize = file.Length / 1048576.0; //MB;
+                    if (fileSize > 3)
+                    {
+                        return Json(new { success = false, errors = "File size must less than 3MB" });
+                    }
+
+                    var fileName = DateTimeOffset.UtcNow.ToUnixTimeSeconds().ToString() + Path.GetExtension(file.FileName);
+                    var filePath = Path.Combine(Directory.GetCurrentDirectory(), @"wwwroot\upload", fileName);
+                    using (var fileStream = new FileStream(filePath, FileMode.Create))
+                    {
+                        await file.CopyToAsync(fileStream);
+                    }
+                    return Json(new { success = true, filePath = @$"upload/{fileName}" });
                 }
-                return Json(new { success = true, filePath = @$"upload/{fileName}" });
+                return Json(new { success = false, errors = "Error on upload file" });
             }
-            return Json(new { success = false, filePath = string.Empty });
+            catch (Exception)
+            {
+                return Json(new { success = false, errors = "Error on upload file" });
+            }
         }
 
         [HttpPost]

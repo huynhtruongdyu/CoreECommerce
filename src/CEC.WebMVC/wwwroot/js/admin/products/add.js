@@ -15,6 +15,7 @@ $('#formImageUpload').submit(function (e) {
                 $('#ThumbnailUrl').val(data?.filePath);
             } else {
                 $('#product-thumbnail-el').empty();
+                alert(data?.errors);
             }
         },
         error: function (xhr, error, status) {
