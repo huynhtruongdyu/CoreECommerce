@@ -34,6 +34,10 @@ namespace CEC.Infrastructure.Contexts
 
                 switch (dbProvider)
                 {
+                    case DatabaseProviderConstant.InMemory:
+                        optionsBuilder.UseInMemoryDatabase("InMemoryDb");
+                        break;
+
                     case DatabaseProviderConstant.MSSQL:
                         optionsBuilder.UseSqlServer(connectionString, opt => opt.MigrationsAssembly(assemblyName));
                         break;

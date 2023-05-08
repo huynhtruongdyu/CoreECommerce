@@ -32,6 +32,10 @@ namespace CEC.Infrastructure.Extensions
             {
                 switch (provider)
                 {
+                    case DatabaseProviderConstant.InMemory:
+                        services.AddDbContext<ApplicationDbContext>(opt => opt.UseInMemoryDatabase("InMemoryDb"));
+                        break;
+
                     case DatabaseProviderConstant.MSSQL:
                         services.AddDbContext<ApplicationDbContext>(opt => opt.UseSqlServer(connectionString));
                         break;
@@ -44,12 +48,16 @@ namespace CEC.Infrastructure.Extensions
 
             void MigrateDatabase()
             {
-                using var scope = services.BuildServiceProvider().CreateScope();
-                var dbContext = scope.ServiceProvider.GetRequiredService<ApplicationDbContext>();
-                dbContext.Database.SetConnectionString(connectionString);
-                if (dbContext.Database.GetMigrations().Any())
+                if (provider != DatabaseProviderConstant.InMemory)
                 {
-                    dbContext.Database.Migrate();
+                    using var scope = services.BuildServiceProvider().CreateScope();
+                    var dbContext = scope.ServiceProvider.GetRequiredService<ApplicationDbContext>();
+                    //dbContext.Database.EnsureCreated();
+                    dbContext.Database.SetConnectionString(connectionString);
+                    if (dbContext.Database.GetMigrations().Any())
+                    {
+                        dbContext.Database.Migrate();
+                    }
                 }
             }
 
