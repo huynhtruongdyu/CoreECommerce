@@ -2,6 +2,7 @@
 using CEC.Application.Abstractions.Services;
 using CEC.Domain.Entities;
 using CEC.Shared.Constants;
+using CEC.Shared.Extensions;
 
 using Microsoft.EntityFrameworkCore;
 
@@ -42,6 +43,12 @@ namespace CEC.Infrastructure.Contexts
                         break;
                 }
             }
+        }
+
+        public async Task ClearData()
+        {
+            this.Products.Clear();
+            await this.SaveChangesAsync();
         }
 
         public DbSet<Product> Products { get; set; }

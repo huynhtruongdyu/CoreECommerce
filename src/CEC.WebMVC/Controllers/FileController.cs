@@ -18,7 +18,12 @@ namespace CEC.WebMVC.Controllers
                     }
 
                     var fileName = DateTimeOffset.UtcNow.ToUnixTimeSeconds().ToString() + Path.GetExtension(file.FileName);
-                    var filePath = Path.Combine(Directory.GetCurrentDirectory(), @"wwwroot\upload", fileName);
+                    var uploadFolder = Path.Combine(Directory.GetCurrentDirectory(), @"wwwroot\upload");
+                    if (!Directory.Exists(uploadFolder))
+                    {
+                        Directory.CreateDirectory(uploadFolder);
+                    }
+                    var filePath = Path.Combine(uploadFolder, fileName);
                     using (var fileStream = new FileStream(filePath, FileMode.Create))
                     {
                         await file.CopyToAsync(fileStream);

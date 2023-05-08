@@ -1,4 +1,5 @@
-﻿using CEC.Infrastructure.Contexts;
+﻿using CEC.Application.Abstractions.UnitOfWork;
+using CEC.Infrastructure.Contexts;
 using CEC.Shared.Models.DTO;
 using CEC.WebMVC.Areas.Admin.Controllers.Base;
 
@@ -9,16 +10,16 @@ namespace CEC.WebMVC.Areas.Admin.Controllers
 {
     public class ProductsController : BaseAdminController
     {
-        private readonly ApplicationDbContext _context;
+        private readonly IUnitOfWork _unitOfWork;
 
-        public ProductsController(ApplicationDbContext context)
+        public ProductsController(IUnitOfWork unitOfWork)
         {
-            _context = context;
+            _unitOfWork = unitOfWork;
         }
 
         public async Task<IActionResult> Index()
         {
-            var rawProducts = await _context.Products.ToListAsync();
+            var rawProducts = await _unitOfWork.ProductRepository.GetAllAsync();
             var productsDto = new List<ProductDto>();
             foreach (var rawProduct in rawProducts)
             {
@@ -34,35 +35,34 @@ namespace CEC.WebMVC.Areas.Admin.Controllers
         }
 
         [HttpPost]
+        [ValidateAntiForgeryToken]
         public async Task<IActionResult> Add([FromForm] ProductCreateModel model)
         {
             if (ModelState.IsValid)
             {
-                await _context.Products.AddAsync(model.ToProduct());
-                var result = await _context.SaveChangesAsync();
-                if (result > 0)
-                {
-                    return RedirectToAction("Index");
-                }
+                await _unitOfWork.ProductRepository.InsertAsync(model.ToProduct());
+                _unitOfWork.Commit();
+                return RedirectToAction("Index");
             }
             return View();
         }
 
         [HttpPost]
+        [ValidateAntiForgeryToken]
         public async Task<IActionResult> Delete(long id)
         {
-            var product = await _context.Products.FindAsync(id);
+            var product = await _unitOfWork.ProductRepository.GetByIdAsync(id);
             if (product != null)
             {
                 product.IsDeleted = true;
-                await _context.SaveChangesAsync();
+                _unitOfWork.Commit();
             }
             return RedirectToAction("Index");
         }
 
         public async Task<ActionResult> Detail(long id)
         {
-            var rawProduct = await _context.Products.FindAsync(id);
+            var rawProduct = await _unitOfWork.ProductRepository.GetByIdAsync(id);
             var product = new ProductDetailModel(rawProduct);
             return View(product);
         }

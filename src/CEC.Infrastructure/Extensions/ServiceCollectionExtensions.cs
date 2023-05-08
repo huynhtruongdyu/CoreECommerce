@@ -1,6 +1,8 @@
 ﻿using CEC.Application.Abstractions.Contexts;
 using CEC.Application.Abstractions.Services;
+using CEC.Application.Abstractions.UnitOfWork;
 using CEC.Infrastructure.Contexts;
+using CEC.Infrastructure.Repositories;
 using CEC.Infrastructure.Services;
 using CEC.Shared.Constants;
 
@@ -58,6 +60,7 @@ namespace CEC.Infrastructure.Extensions
         {
             services.AddSingleton<IDatabaseProviderService, DatabaseProviderService>();
             services.AddScoped<IApplicationDbContext, ApplicationDbContext>();
+            services.AddScoped<IUnitOfWork, UnitOfWork>();
         }
     }
 }

@@ -8,6 +8,6 @@ namespace CEC.Application.Abstractions.Contexts
     {
         DbSet<Product> Products { get; set; }
 
-        Task<int> SaveChangesAsync(CancellationToken cancellationToken = new CancellationToken());
+        Task ClearData();
     }
 }
