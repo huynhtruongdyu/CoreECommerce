@@ -15,7 +15,7 @@
     </ol>
 </nav>
 <form method="post" asp-action="Add">
-    <input asp-for="ThumbnailUrl" type="text" hidden/>
+    <input asp-for="ThumbnailUrl" type="text" hidden />
     <div class="alert alert-secondary" role="alert">
         <div class="row">
             <div class="col-6">
@@ -50,34 +50,40 @@
 <div class="row">
     <div class="col-md-6">
         <div class="form-group mb-3">
-            @*TODO: Implement preview before upload*@
-            @*src: https://homiedev.com/preview-image-js/*@
-            @*src: https://khalidabuhakmeh.com/client-side-image-previews-with-javascript*@
-            <form method="post" enctype="multipart/form-data" id="formImageUpload" action="/File/UploadFile">
-                <div class="form-group mb-3">
-                    <label for="file" class="form-label">Thumbnail</label>
-                    <div class="d-flex align-items-center gap-2">
-                        <input name="file" id="file" type="file" class="form-control d-inline-block" accept="image/png, image/gif, image/jpeg" />
-                        <input type="submit" value="Upload" class="btn btn-outline-primary" />
 
+            <fieldset class="scheduler-border float-none w-auto px-3">
+                <legend class="scheduler-border">Thumbnail</legend>
+
+
+                @*TODO: Implement preview before upload*@
+                @*src: https://homiedev.com/preview-image-js/*@
+                @*src: https://khalidabuhakmeh.com/client-side-image-previews-with-javascript*@
+                <form method="post" enctype="multipart/form-data" id="formImageUpload" action="/File/UploadFile">
+                    <div class="form-group mb-3">
+                        @*<label for="file" class="form-label">Thumbnail</label>*@
+                        <div class="d-flex align-items-center gap-2">
+                            <input name="file" id="file" type="file" class="form-control d-inline-block" accept="image/png, image/gif, image/jpeg" />
+                            <input type="submit" value="Upload" class="btn btn-outline-primary" />
+
+                        </div>
                     </div>
-                </div>
-            </form>
-            <div class="form-group mb-3 d-flex justify-content-between align-items-center gap-2">
-                <button id="start-camera" type="button" class="btn btn-secondary flex-grow-1">
-                    From camera
-                </button>
+                </form>
+                <div class="form-group mb-3 d-flex justify-content-between align-items-center gap-2">
+                    <button id="start-camera" type="button" class="btn btn-secondary flex-grow-1">
+                        From camera
+                    </button>
 
-                <button id="click-photo" class="btn btn-outline-success" style="width:200px" disabled>Take picture</button>
-            </div>
-            @*<div>
-            <button id="start-camera" >Start Camera</button>
-            <video id="video" width="320" height="240" autoplay></video>
-            <button id="click-photo">Click Photo</button>
-            <canvas id="canvas" width="320" height="240"></canvas>
-            </div>*@
-            <div class="text-center" id="product-thumbnail-el">
-            </div>
+                    <button id="click-photo" class="btn btn-outline-success" style="width:200px" disabled>Take picture</button>
+                </div>
+                @*<div>
+                <button id="start-camera" >Start Camera</button>
+                <video id="video" width="320" height="240" autoplay></video>
+                <button id="click-photo">Click Photo</button>
+                <canvas id="canvas" width="320" height="240"></canvas>
+                </div>*@
+                <div class="text-center" id="product-thumbnail-el">
+                </div>
+            </fieldset>
         </div>
     </div>
 </div>

@@ -21,9 +21,14 @@ namespace CEC.WebMVC.Areas.Admin.Controllers
         {
             var rawProducts = await _unitOfWork.ProductRepository.GetAllAsync();
             var productsDto = new List<ProductDto>();
-            foreach (var rawProduct in rawProducts)
+            foreach (var rawProduct in rawProducts.OrderByDescending(x => x.CreatedBy))
             {
-                productsDto.Add(new ProductDto(rawProduct.Id, rawProduct.Name, rawProduct.Brief, rawProduct.ThumbnailUrl));
+                productsDto.Add(new ProductDto(
+                    rawProduct.Id,
+                    rawProduct.Name,
+                    rawProduct.Brief,
+                    rawProduct.ThumbnailUrl,
+                    rawProduct.Status));
             }
 
             return View(productsDto);

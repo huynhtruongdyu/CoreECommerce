@@ -1,4 +1,6 @@
-﻿@model List<ProductDto>;
+﻿@using CEC.Domain.Enums;
+@using CEC.Shared.Helper;
+@model List<ProductDto>;
 @{
     ViewData["Title"] = "Index";
     Layout = "~/Areas/Admin/Views/Shared/_Layout.cshtml";
@@ -31,9 +33,9 @@
         <table class="w-100 table table-striped table-hover align-middle">
             <thead>
                 <tr>
-                    <th scope="col"></th>
-                    <th scope="col">Name</th>
+                    <th scope="col" colspan="2">Name</th>
                     <th scope="col">Brief</th>
+                    <th scope="col">Status</th>
                     <th scope="col" class="text-center">Action</th>
                 </tr>
             </thead>
@@ -55,6 +57,20 @@
 
                         <td>@product.Name</td>
                         <td>@product.Brief</td>
+                        <td>
+                            @switch (product.Status)
+                            {
+                                case(EnumProductStatus.Active):
+                                    <span class="badge bg-success">@product.Status.GetDescription()</span>
+                                    break;
+                                case (EnumProductStatus.Archived):
+                                    <span class="badge bg-warning text-dark">@product.Status.GetDescription()</span>
+                                    break;
+                                default:
+                                    <span class="badge bg-secondary">@product.Status.GetDescription()</span>
+                                    break;
+                            }
+                        </td>
                         <td style="width:150px;">
                             <div class="w-100 d-flex justify-content-center align-items-center">
                                 <div class="btn-group " role="group" aria-label="Basic example">

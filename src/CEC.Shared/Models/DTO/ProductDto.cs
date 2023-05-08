@@ -1,4 +1,5 @@
 ﻿using CEC.Domain.Entities;
+using CEC.Domain.Enums;
 
 using System.ComponentModel.DataAnnotations;
 
@@ -6,11 +7,12 @@ namespace CEC.Shared.Models.DTO
 {
     public class ProductDto
     {
-        public ProductDto(long id, string name, string brief, string thumbnailUrl)
+        public ProductDto(long id, string name, string brief, string thumbnailUrl, EnumProductStatus status)
         {
             Id = id;
             Name = name;
             Brief = brief;
+            Status = status;
             ThumbnailUrl = thumbnailUrl;
         }
 
@@ -18,6 +20,7 @@ namespace CEC.Shared.Models.DTO
         public string Name { get; set; }
         public string Brief { get; set; }
         public string ThumbnailUrl { get; set; }
+        public EnumProductStatus Status { get; set; }
     }
 
     public class ProductCreateModel
