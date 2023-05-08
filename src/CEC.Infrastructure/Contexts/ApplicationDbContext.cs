@@ -42,6 +42,7 @@ namespace CEC.Infrastructure.Contexts
                         optionsBuilder.UseSqlServer(connectionString, opt => opt.MigrationsAssembly(assemblyName));
                         break;
 
+                    //Sqlite
                     default:
                         optionsBuilder.UseSqlite(connectionString, opt => opt.MigrationsAssembly(assemblyName));
                         break;

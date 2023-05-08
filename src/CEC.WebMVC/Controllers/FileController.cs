@@ -28,7 +28,7 @@ namespace CEC.WebMVC.Controllers
                     {
                         await file.CopyToAsync(fileStream);
                     }
-                    return Json(new { success = true, filePath = @$"upload/{fileName}" });
+                    return Json(new { success = true, filePath = @$"/upload/{fileName}" });
                 }
                 return Json(new { success = false, errors = "Error on upload file" });
             }
