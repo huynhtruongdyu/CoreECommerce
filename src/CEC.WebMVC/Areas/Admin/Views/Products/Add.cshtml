@@ -26,35 +26,70 @@
         </div>
     </div>
     <div class="row">
-        <div class="col-md-6">
-            <div class="form-group mb-3">
-                <label asp-for="Name" class="form-label required"></label>
-                <input asp-for="Name" type="text" class="form-control" autocomplete="off" />
-                <span asp-validation-for="Name" class="form-text text-danger"></span>
-            </div>
-            <div class="form-group mb-3">
-                <label asp-for="Brief" class="form-label"></label>
-                <input asp-for="Brief" type="text" class="form-control" />
-            </div>
-            <div class="form-group mb-3">
-                <label asp-for="Description" class="form-label"></label><br />
-                <textarea asp-for="Description" class="form-control mh-100" id="description"></textarea>
-            </div>
-
-
+        <div class="col-12 col-md-6">
+            <section>
+                <fieldset>
+                    <legend>Information</legend>
+                    <div class="form-group mb-3">
+                        <label asp-for="Name" class="form-label required"></label>
+                        <input asp-for="Name" type="text" class="form-control" autocomplete="off" />
+                        <span asp-validation-for="Name" class="form-text text-danger"></span>
+                    </div>
+                    <div class="form-group mb-3">
+                        <label asp-for="Brief" class="form-label"></label>
+                        <input asp-for="Brief" type="text" class="form-control" />
+                    </div>
+                    <div class="form-group mb-3">
+                        <label asp-for="Description" class="form-label"></label><br />
+                        <textarea asp-for="Description" class="form-control mh-100" id="description"></textarea>
+                    </div>
+                </fieldset>
+            </section>
         </div>
-        <div class="col-md-6">
+        <div class="col-12 col-md-6">
+            <section>
+                <fieldset>
+                    <legend>Pricing</legend>
+                </fieldset>
+            </section>
+            <section>
+                <fieldset>
+                    <legend>Variants</legend>
+                </fieldset>
+            </section>
+            <section>
+                <fieldset>
+                    <legend>SEO</legend>
+                    <div class="input-group mb-3">
+                        <span class="input-group-text" id="basic-addon1">@("@title")</span>
+                        <input type="text" class="form-control" aria-label="title" aria-describedby="basic-addon1">
+                    </div>
+                    <div class="input-group mb-3">
+                        <span class="input-group-text" id="basic-addon2">@("@keywords")</span>
+                        <input type="text" class="form-control" aria-label="keywords" aria-describedby="basic-addon2">
+                    </div>
+                    <div class="input-group mb-3">
+                        <span class="input-group-text" id="basic-addon3">@("@description")</span>
+                        <input type="text" class="form-control" aria-label="description" aria-describedby="basic-addon3">
+                    </div>
+                    <div id="custom-attribute-div">
+                        @*<div class="input-group mb-3">
+                        <input class="input-group-text" id="basic-addon4" style="width: auto; min-width: 100px; max-width: 30%;" />
+                        <input type="text" class="form-control" aria-label="description" aria-describedby="basic-addon4">
+                        </div>*@
+                    </div>
+                    <button type="button" role="button" class="btn btn-outline-primary w-100">Add custom attribute</button>
+                </fieldset>
+            </section>
         </div>
     </div>
 </form>
 <div class="row">
     <div class="col-md-6">
-        <div class="form-group mb-3">
-
-            <fieldset class="scheduler-border float-none w-auto px-3">
-                <legend class="scheduler-border">Thumbnail</legend>
-
-
+        <fieldset>
+            <legend>Images</legend>
+            <div class="form-group mb-3">
+                <label class="form-label">Thumbnail</label><br />
                 @*TODO: Implement preview before upload*@
                 @*src: https://homiedev.com/preview-image-js/*@
                 @*src: https://khalidabuhakmeh.com/client-side-image-previews-with-javascript*@
@@ -75,16 +110,10 @@
 
                     <button id="click-photo" class="btn btn-outline-success" style="width:200px" disabled>Take picture</button>
                 </div>
-                @*<div>
-                <button id="start-camera" >Start Camera</button>
-                <video id="video" width="320" height="240" autoplay></video>
-                <button id="click-photo">Click Photo</button>
-                <canvas id="canvas" width="320" height="240"></canvas>
-                </div>*@
-                <div class="text-center" id="product-thumbnail-el">
-                </div>
-            </fieldset>
-        </div>
+                <div class="text-center" id="product-thumbnail-el"></div>
+
+            </div>
+        </fieldset>
     </div>
 </div>
 <div id="cameraSection" hidden>
