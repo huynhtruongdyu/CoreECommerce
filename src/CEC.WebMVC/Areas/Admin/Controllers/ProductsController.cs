@@ -20,8 +20,9 @@ namespace CEC.WebMVC.Areas.Admin.Controllers
         public async Task<IActionResult> Index()
         {
             var rawProducts = await _unitOfWork.ProductRepository.GetAllAsync();
+            rawProducts = rawProducts.OrderByDescending(c => c.CreatedAt);
             var productsDto = new List<ProductDto>();
-            foreach (var rawProduct in rawProducts.OrderByDescending(x => x.CreatedBy))
+            foreach (var rawProduct in rawProducts)
             {
                 productsDto.Add(new ProductDto(
                     rawProduct.Id,

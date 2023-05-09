@@ -39,7 +39,7 @@ namespace CEC.Infrastructure.Extensions
                     case DatabaseProviderConstant.MSSQL:
                         services.AddDbContext<ApplicationDbContext>(opt => opt.UseSqlServer(connectionString));
                         break;
-
+                    //TODO: Implement other Database provider
                     default:
                         services.AddDbContext<ApplicationDbContext>(opt => opt.UseSqlite(connectionString));
                         break;
