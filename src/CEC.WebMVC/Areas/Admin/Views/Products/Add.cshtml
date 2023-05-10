@@ -51,15 +51,24 @@
                     <legend>Pricing</legend>
                     <div class="form-group mb-3">
                         <label class="form-label required">Price</label>
-                        <input type="text" class="form-control" autocomplete="off" />
+                        <div class="input-group mb-3">
+                            <span class="input-group-text" id="basic-addon1">$</span>
+                            <input type="text" class="form-control number-separator" />
+                        </div>
                     </div>
                     <div class="form-group mb-3">
                         <label class="form-label">Compare at price</label>
-                        <input type="text" class="form-control" autocomplete="off" />
+                        <div class="input-group mb-3">
+                            <span class="input-group-text" id="basic-addon1">$</span>
+                            <input type="text" class="form-control number-separator" />
+                        </div>
                     </div>
                     <div class="form-group mb-3">
                         <label class="form-label">Cost per item</label>
-                        <input type="text" class="form-control" autocomplete="off" />
+                        <div class="input-group">
+                            <span class="input-group-text" id="basic-addon1">$</span>
+                            <input type="text" class="form-control number-separator" />
+                        </div>
                         <span class="form-text">Customer won't see this</span>
                     </div>
                 </fieldset>
@@ -192,5 +201,11 @@
         await Html.RenderPartialAsync("_ValidationScriptsPartial");
     }
     <script src="~/lib/simple-mde/simplemde.min.js"></script>
+    <script src="~/lib/easy-number-separator/easy-number-separator.js"></script>
     <script src="~/js/admin/products/add.js"></script>
+    <script type="text/javascript">
+        easyNumberSeparator({
+            selector: '.number-separator',
+        })
+    </script>
 }
