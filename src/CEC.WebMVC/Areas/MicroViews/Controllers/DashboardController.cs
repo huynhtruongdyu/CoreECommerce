@@ -1,4 +1,4 @@
-﻿using CEC.Application.Abstractions.UnitOfWork;
+﻿using CEC.Application.UnitOfWork;
 using CEC.Shared.Models.DTO;
 
 using Microsoft.AspNetCore.Mvc;

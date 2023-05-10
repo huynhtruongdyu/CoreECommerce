@@ -2,7 +2,7 @@
 
 using System.Linq.Expressions;
 
-namespace CEC.Application.Abstractions.Repositories
+namespace CEC.Application.Repositories
 {
     public interface IGenericRepository<T> : IDisposable where T : IRootEntity
     {

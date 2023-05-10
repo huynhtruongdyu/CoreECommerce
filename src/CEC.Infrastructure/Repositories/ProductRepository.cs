@@ -1,4 +1,4 @@
-﻿using CEC.Application.Abstractions.Repositories;
+﻿using CEC.Application.Repositories;
 using CEC.Domain.Entities;
 using CEC.Infrastructure.Contexts;
 

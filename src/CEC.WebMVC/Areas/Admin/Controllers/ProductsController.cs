@@ -1,4 +1,4 @@
-﻿using CEC.Application.Abstractions.UnitOfWork;
+﻿using CEC.Application.UnitOfWork;
 using CEC.Infrastructure.Contexts;
 using CEC.Shared.Models.DTO;
 using CEC.WebMVC.Areas.Admin.Controllers.Base;

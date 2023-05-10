@@ -1,9 +1,7 @@
-﻿using CEC.Application.Abstractions.Services;
-using CEC.Shared.Options;
+﻿using CEC.Application.Services;
 using CEC.WebMVC.Areas.Marketing.Controllers.Base;
 
 using Microsoft.AspNetCore.Mvc;
-using Microsoft.Extensions.Options;
 
 namespace CEC.WebMVC.Areas.Marketing.Controllers
 {

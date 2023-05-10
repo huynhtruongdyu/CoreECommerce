@@ -1,4 +1,4 @@
-﻿namespace CEC.Application.Abstractions.Common
+﻿namespace CEC.Application.Common
 {
     public interface IScopedService : IService
     {

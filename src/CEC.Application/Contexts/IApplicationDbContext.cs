@@ -2,7 +2,7 @@
 
 using Microsoft.EntityFrameworkCore;
 
-namespace CEC.Application.Abstractions.Contexts
+namespace CEC.Application.Contexts
 {
     public interface IApplicationDbContext
     {

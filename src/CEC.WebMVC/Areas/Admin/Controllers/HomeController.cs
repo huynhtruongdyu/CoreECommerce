@@ -1,4 +1,4 @@
-﻿using CEC.Application.Abstractions.UnitOfWork;
+﻿using CEC.Application.UnitOfWork;
 using CEC.WebMVC.Areas.Admin.Controllers.Base;
 
 using Microsoft.AspNetCore.Mvc;

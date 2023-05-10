@@ -1,6 +1,6 @@
-﻿using CEC.Application.Abstractions.Common;
+﻿using CEC.Application.Common;
 
-namespace CEC.Application.Abstractions.Services
+namespace CEC.Application.Services
 {
     public interface IDatabaseProviderService : ISingletonService
     {

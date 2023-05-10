@@ -1,5 +1,5 @@
-﻿using CEC.Application.Abstractions.Contexts;
-using CEC.Application.Abstractions.Services;
+﻿using CEC.Application.Contexts;
+using CEC.Application.Services;
 using CEC.Domain.Common;
 using CEC.Domain.Entities;
 using CEC.Infrastructure.Extensions;

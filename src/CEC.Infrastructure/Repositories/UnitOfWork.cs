@@ -1,5 +1,5 @@
-﻿using CEC.Application.Abstractions.Repositories;
-using CEC.Application.Abstractions.UnitOfWork;
+﻿using CEC.Application.Repositories;
+using CEC.Application.UnitOfWork;
 using CEC.Infrastructure.Contexts;
 using CEC.Infrastructure.Repositories;
 

@@ -1,6 +1,6 @@
-﻿using CEC.Application.Abstractions.Repositories;
+﻿using CEC.Application.Repositories;
 
-namespace CEC.Application.Abstractions.UnitOfWork
+namespace CEC.Application.UnitOfWork
 {
     public interface IUnitOfWork : IDisposable
     {

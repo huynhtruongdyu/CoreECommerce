@@ -1,4 +1,4 @@
-﻿using CEC.Application.Abstractions.Services;
+﻿using CEC.Application.Services;
 using CEC.Shared.Constants;
 using CEC.Shared.Options;
 

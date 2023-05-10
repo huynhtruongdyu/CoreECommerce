@@ -1,6 +1,6 @@
-﻿using CEC.Application.Abstractions.Contexts;
-using CEC.Application.Abstractions.Services;
-using CEC.Application.Abstractions.UnitOfWork;
+﻿using CEC.Application.Contexts;
+using CEC.Application.Services;
+using CEC.Application.UnitOfWork;
 using CEC.Infrastructure.Contexts;
 using CEC.Infrastructure.Repositories;
 using CEC.Infrastructure.Services;
