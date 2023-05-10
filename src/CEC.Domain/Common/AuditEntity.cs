@@ -1,8 +1,8 @@
 ﻿namespace CEC.Domain.Common
 {
-    public class AuditEntity<TIdentity>
+    public class AuditEntity
     {
-        public TIdentity Id { get; set; }
+        public long Id { get; set; }
 
         public DateTime CreatedAt { get; set; }
         public DateTime? UpdatedAt { get; set; }

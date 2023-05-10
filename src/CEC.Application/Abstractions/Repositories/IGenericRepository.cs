@@ -1,7 +1,5 @@
 ﻿using CEC.Domain.Common;
 
-using Microsoft.EntityFrameworkCore;
-
 using System.Linq.Expressions;
 
 namespace CEC.Application.Abstractions.Repositories

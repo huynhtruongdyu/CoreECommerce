@@ -1,5 +1,6 @@
 ﻿using CEC.Application.Abstractions.Contexts;
 using CEC.Application.Abstractions.Services;
+using CEC.Domain.Common;
 using CEC.Domain.Entities;
 using CEC.Shared.Constants;
 using CEC.Shared.Extensions;
@@ -16,6 +17,46 @@ namespace CEC.Infrastructure.Contexts
             : base(options)
         {
             _databaseProviderService = databaseProviderService;
+        }
+
+        public override int SaveChanges()
+        {
+            var entries = ChangeTracker
+                            .Entries()
+                            .Where(e => e.Entity is AuditEntity && (
+                                    e.State == EntityState.Added
+                                    || e.State == EntityState.Modified));
+
+            foreach (var entityEntry in entries)
+            {
+                ((AuditEntity)entityEntry.Entity).UpdatedAt = DateTime.Now;
+
+                if (entityEntry.State == EntityState.Added)
+                {
+                    ((AuditEntity)entityEntry.Entity).CreatedAt = DateTime.Now;
+                }
+            }
+            return base.SaveChanges();
+        }
+
+        public override Task<int> SaveChangesAsync(CancellationToken cancellationToken = default)
+        {
+            var entries = ChangeTracker
+                            .Entries()
+                            .Where(e => e.Entity is AuditEntity && (
+                                    e.State == EntityState.Added
+                                    || e.State == EntityState.Modified));
+
+            foreach (var entityEntry in entries)
+            {
+                ((AuditEntity)entityEntry.Entity).UpdatedAt = DateTime.Now;
+
+                if (entityEntry.State == EntityState.Added)
+                {
+                    ((AuditEntity)entityEntry.Entity).CreatedAt = DateTime.Now;
+                }
+            }
+            return base.SaveChangesAsync(cancellationToken);
         }
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
