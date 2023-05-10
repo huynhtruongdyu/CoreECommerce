@@ -2,6 +2,7 @@
 using CEC.Application.Abstractions.Services;
 using CEC.Domain.Common;
 using CEC.Domain.Entities;
+using CEC.Infrastructure.Extensions;
 using CEC.Shared.Constants;
 using CEC.Shared.Extensions;
 
@@ -62,6 +63,7 @@ namespace CEC.Infrastructure.Contexts
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
             modelBuilder.ApplyConfigurationsFromAssembly(InfrastructureAssemblyReference.Assembly);
+            modelBuilder.ApplySoftDeleteQueryFilter();
             base.OnModelCreating(modelBuilder);
         }
 

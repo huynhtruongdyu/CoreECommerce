@@ -13,7 +13,7 @@ namespace CEC.Infrastructure.EntityConfigurations
         {
             builder.ToTable(TableName);
             builder.HasKey(x => x.Id);
-            builder.HasQueryFilter(x => x.IsDeleted == false);
+            //builder.HasQueryFilter(x => x.IsDeleted == false);
             builder.Property(x => x.Name).IsRequired();
         }
     }
