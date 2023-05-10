@@ -1,4 +1,3 @@
-legend.scheduler-border {
-    width: inherit; /* Or auto */
-    padding: 0 10px; /* To give a bit of padding on the left and right */
+.CodeMirror, .CodeMirror-scroll {
+    min-height: 200px;
 }

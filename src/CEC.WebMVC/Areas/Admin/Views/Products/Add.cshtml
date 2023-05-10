@@ -21,12 +21,12 @@
             <div class="col-6">
             </div>
             <div class="col-6 d-flex flex-row-reverse">
-                <button type="submit" class="btn btn-primary">Submit</button>
+                <button type="submit" class="btn btn-primary btn-lg">Submit</button>
             </div>
         </div>
     </div>
     <div class="row">
-        <div class="col-12 col-md-6">
+        <div class="col-12 col-md-8">
             <section>
                 <fieldset>
                     <legend>Information</legend>
@@ -45,21 +45,38 @@
                     </div>
                 </fieldset>
             </section>
-        </div>
-        <div class="col-12 col-md-6">
             <section>
                 <fieldset>
                     <legend>Pricing</legend>
+                    <div class="form-group mb-3">
+                        <label class="form-label required">Price</label>
+                        <input type="text" class="form-control" autocomplete="off" />
+                    </div>
+                    <div class="form-group mb-3">
+                        <label class="form-label">Compare at price</label>
+                        <input type="text" class="form-control" autocomplete="off" />
+                    </div>
+                    <div class="form-group mb-3">
+                        <label class="form-label">Cost per item</label>
+                        <input type="text" class="form-control" autocomplete="off" />
+                        <span class="form-text">Customer won't see this</span>
+                    </div>
                 </fieldset>
             </section>
             <section>
                 <fieldset>
                     <legend>Variants</legend>
+                    <div class="form-check">
+                        <input class="form-check-input" type="checkbox" value="" id="flexCheckDefault">
+                        <label class="form-check-label" for="flexCheckDefault">
+                            This product has options, like color or size...
+                        </label>
+                    </div>
                 </fieldset>
             </section>
             <section>
                 <fieldset>
-                    <legend>SEO</legend>
+                    <legend>SEO (Search Engine Optimization)</legend>
                     <div class="input-group mb-3">
                         <span class="input-group-text" id="basic-addon1">@("@title")</span>
                         <input type="text" class="form-control" aria-label="title" aria-describedby="basic-addon1">
@@ -82,12 +99,60 @@
                 </fieldset>
             </section>
         </div>
+        <div class="col-12 col-md-4">
+            <section>
+                <fieldset>
+                    <legend>Product status</legend>
+                    <select class="form-select">
+                        <option value="1">Draft</option>
+                        <option value="2">Active</option>
+                        <option value="3">Archived</option>
+                    </select>
+                </fieldset>
+            </section>
+            <section>
+                <fieldset>
+                    <legend>Product organization</legend>
+                    <div class="form-group mb-3">
+                        <label class="form-label">Product category</label><br />
+                        <select class="form-select">
+                            <option value="1">Shirt & Top</option>
+                        </select>
+                    </div>
+                    <div class="form-group mb-3">
+                        <label class="form-label">Product type</label><br />
+                        <select class="form-select">
+                            <option value="1">T-Shirt </option>
+                        </select>
+                    </div>
+                    <div class="form-group mb-3">
+                        <label class="form-label">Vendor</label><br />
+                        <select class="form-select">
+                            <option value="1">Sample Vendor A</option>
+                            <option value="1">Sample Vendor B</option>
+                            <option value="1">Sample Vendor C</option>
+                        </select>
+                    </div>
+                    <div class="form-group mb-3">
+                        <label class="form-label">Collections</label><br />
+                        <select class="form-select">
+                            <option value="1">Winter</option>
+                            <option value="1">Summer</option>
+                        </select>
+                    </div>
+                    <div class="form-group mb-3">
+                        <label class="form-label">Tags</label><br />
+                        <input type="text" class="form-control" />
+                    </div>
+                </fieldset>
+            </section>
+        </div>
     </div>
 </form>
 <div class="row">
-    <div class="col-md-6">
+    <div class="col-md-8">
         <fieldset>
-            <legend>Images</legend>
+            <legend>Media</legend>
             <div class="form-group mb-3">
                 <label class="form-label">Thumbnail</label><br />
                 @*TODO: Implement preview before upload*@
@@ -103,23 +168,23 @@
                         </div>
                     </div>
                 </form>
-                <div class="form-group mb-3 d-flex justify-content-between align-items-center gap-2">
-                    <button id="start-camera" type="button" class="btn btn-secondary flex-grow-1">
-                        From camera
-                    </button>
+                @*<div class="form-group mb-3 d-flex justify-content-between align-items-center gap-2">
+                <button id="start-camera" type="button" class="btn btn-secondary flex-grow-1">
+                From camera
+                </button>
 
-                    <button id="click-photo" class="btn btn-outline-success" style="width:200px" disabled>Take picture</button>
-                </div>
+                <button id="click-photo" class="btn btn-outline-success" style="width:200px" disabled>Take picture</button>
+                </div>*@
                 <div class="text-center" id="product-thumbnail-el"></div>
 
             </div>
         </fieldset>
     </div>
 </div>
-<div id="cameraSection" hidden>
+@*<div id="cameraSection" hidden>
     <video id="video" style="position:fixed; top:20px; right:20px; width:300px; height:200px; z-index:10" autoplay></video>
     <canvas id="canvas" hidden></canvas>
-</div>
+</div>*@
 
 @section Styles {
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/simplemde/latest/simplemde.min.css">

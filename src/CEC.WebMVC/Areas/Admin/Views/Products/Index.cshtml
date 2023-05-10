@@ -17,11 +17,11 @@
 <div class="alert alert-secondary" role="alert">
     <div class="row">
         <div class="col-6">
-            <button class="btn btn-secondary" disabled>Import</button>
-            <button class="btn btn-secondary" disabled>Export</button>
+            <button class="btn btn-secondary btn-lg disabled">Import</button>
+            <button class="btn btn-secondary btn-lg disabled">Export</button>
         </div>
         <div class="col-6 d-flex flex-row-reverse">
-            <a class="btn btn-primary" role="button" asp-area="Admin" asp-controller="Products" asp-action="Add">Add new</a>
+            <a class="btn btn-primary btn-lg" role="button" asp-area="Admin" asp-controller="Products" asp-action="Add">Add new</a>
         </div>
     </div>
 </div>
@@ -34,7 +34,6 @@
             <thead>
                 <tr>
                     <th scope="col" colspan="2">Name</th>
-                    <th scope="col">Brief</th>
                     <th scope="col">Status</th>
                     <th scope="col" class="text-center">Action</th>
                 </tr>
@@ -46,21 +45,20 @@
                         <td style="width:100px;">
                             @if (String.IsNullOrEmpty(product.ThumbnailUrl))
                             {
-                                <img src="~/images/no_image_placeholder.jpg" style="height:100px; width:100px;" loading="lazy" class="img-thumbnail" />
+                                <img src="~/images/no_image_placeholder.jpg" style="height:70px; width:50px;" loading="lazy" class="img-thumbnail" />
 
                             }
                             else
                             {
-                                <img src="@product.ThumbnailUrl" style="height:100px; width:100px; object-fit:cover;" loading="lazy" class="img-thumbnail" />
+                                <img src="@product.ThumbnailUrl" style="height:70px; width:50px; object-fit:cover;" loading="lazy" class="img-thumbnail" />
                             }
                         </td>
 
-                        <td>@product.Name</td>
-                        <td>@product.Brief</td>
+                        <td><a class="text-decoration-none" asp-area="Admin" asp-controller="Products" asp-action="Details" asp-route-id="@product.Id">@product.Name</a></td>
                         <td>
                             @switch (product.Status)
                             {
-                                case(EnumProductStatus.Active):
+                                case (EnumProductStatus.Active):
                                     <span class="badge bg-success">@product.Status.GetDescription()</span>
                                     break;
                                 case (EnumProductStatus.Archived):
