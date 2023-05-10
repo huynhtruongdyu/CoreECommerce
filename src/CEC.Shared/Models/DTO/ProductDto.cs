@@ -33,6 +33,7 @@ namespace CEC.Shared.Models.DTO
         public string Brief { get; set; }
         public string Description { get; set; }
         public string ThumbnailUrl { get; set; }
+        public EnumProductStatus Status { get; set; }
 
         public Product ToProduct()
         {
@@ -42,6 +43,7 @@ namespace CEC.Shared.Models.DTO
                 Brief = this.Brief,
                 ThumbnailUrl = this.ThumbnailUrl,
                 Description = this.Description,
+                Status = this.Status
             };
         }
     }

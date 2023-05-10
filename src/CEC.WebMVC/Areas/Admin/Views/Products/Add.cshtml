@@ -1,4 +1,5 @@
-﻿@model ProductCreateModel;
+﻿@using CEC.Domain.Enums;
+@model ProductCreateModel;
 
 @{
     ViewData["Title"] = "Add";
@@ -103,11 +104,7 @@
             <section>
                 <fieldset>
                     <legend>Product status</legend>
-                    <select class="form-select">
-                        <option value="1">Draft</option>
-                        <option value="2">Active</option>
-                        <option value="3">Archived</option>
-                    </select>
+                    <select asp-for="Status" class="form-select" asp-items="@(Html.GetEnumSelectList<EnumProductStatus>())"></select>
                 </fieldset>
             </section>
             <section>
