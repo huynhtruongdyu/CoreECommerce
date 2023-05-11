@@ -5,10 +5,10 @@ using System.Globalization;
 
 var builder = WebApplication.CreateBuilder(args);
 {
-    builder.Services.AddResponseCompression(options =>
-    {
-        options.EnableForHttps = true;
-    });
+    //builder.Services.AddResponseCompression(options =>
+    //{
+    //    options.EnableForHttps = true;
+    //});
     builder.Services.AddControllersWithViews();
     builder.Services.Configure<GlobalAppsettings>(x => builder.Configuration.Bind(x));
     builder.Services.RegisterService();
@@ -17,14 +17,14 @@ var builder = WebApplication.CreateBuilder(args);
 
 var app = builder.Build();
 {
-    app.UseResponseCompression();
+    //app.UseResponseCompression();
     if (!app.Environment.IsDevelopment())
     {
         app.UseExceptionHandler("/Home/Error");
         app.UseHsts();
     }
 
-    app.UseHttpsRedirection();
+    //app.UseHttpsRedirection();
     app.UseStaticFiles(new StaticFileOptions
     {
         OnPrepareResponse = ctx =>
