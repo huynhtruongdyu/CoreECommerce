@@ -15,14 +15,15 @@
         <li class="breadcrumb-item active" aria-current="page">Add new</li>
     </ol>
 </nav>
-<form method="post" asp-action="Add">
+<form method="post" asp-action="Add" id="addProductForm">
     <input asp-for="ThumbnailUrl" type="text" hidden />
+    <input asp-for="Description" type="text" hidden id="description" name="description"/>
     <div class="alert alert-secondary" role="alert">
         <div class="row">
             <div class="col-6">
             </div>
             <div class="col-6 d-flex flex-row-reverse">
-                <button type="submit" class="btn btn-primary btn-lg">Submit</button>
+                <button type="button" onclick="beforeSubmit()" class="btn btn-primary btn-lg">Submit</button>
             </div>
         </div>
     </div>
@@ -53,21 +54,21 @@
                         <label class="form-label required">Price</label>
                         <div class="input-group mb-3">
                             <span class="input-group-text" id="basic-addon1">$</span>
-                            <input type="text" class="form-control number-separator" />
+                            <input type="number" class="form-control" />
                         </div>
                     </div>
                     <div class="form-group mb-3">
                         <label class="form-label">Compare at price</label>
                         <div class="input-group mb-3">
                             <span class="input-group-text" id="basic-addon1">$</span>
-                            <input type="text" class="form-control number-separator" />
+                            <input type="number" class="form-control" />
                         </div>
                     </div>
                     <div class="form-group mb-3">
                         <label class="form-label">Cost per item</label>
                         <div class="input-group">
                             <span class="input-group-text" id="basic-addon1">$</span>
-                            <input type="text" class="form-control number-separator" />
+                            <input type="number" class="form-control" />
                         </div>
                         <span class="form-text">Customer won't see this</span>
                     </div>
@@ -192,20 +193,40 @@
     <canvas id="canvas" hidden></canvas>
 </div>*@
 
-@section Styles {
+@section Header {
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/simplemde/latest/simplemde.min.css">
+    <script src="https://cdn.tiny.cloud/1/gwhopq19q5u8lxldbupsxk93ysqkxxujeo860maiqoristn1/tinymce/6/tinymce.min.js" referrerpolicy="origin"></script>
 }
 
 @section Scripts {
     @{
         await Html.RenderPartialAsync("_ValidationScriptsPartial");
     }
-    <script src="~/lib/simple-mde/simplemde.min.js"></script>
-    <script src="~/lib/easy-number-separator/easy-number-separator.js"></script>
+
     <script src="~/js/admin/products/add.js"></script>
     <script type="text/javascript">
-        easyNumberSeparator({
-            selector: '.number-separator',
-        })
+
+        let editorChangeHandlerId;
+        tinymce.init({
+            selector: 'textarea',
+            plugins: 'anchor autolink charmap codesample emoticons image link lists media searchreplace table visualblocks wordcount',
+            toolbar: 'undo redo | blocks fontfamily fontsize | bold italic underline strikethrough | link image media table | align lineheight | numlist bullist indent outdent | emoticons charmap | removeformat',
+            setup: function (editor) {
+                editor.on('Paste Change input Undo Redo', function (e) {
+                    clearTimeout(editorChangeHandlerId);
+                    editorChangeHandlerId = setTimeout(function () {
+                        console.log('e', e);
+                    }, 100);
+                });
+            }
+        });
+        beforeSubmit = function () {
+            var descriptionContent = tinymce.activeEditor.getContent();
+            if(descriptionContent){
+                $("#description").val(descriptionContent);
+            }
+
+            $("#addProductForm").submit();
+        }
     </script>
 }

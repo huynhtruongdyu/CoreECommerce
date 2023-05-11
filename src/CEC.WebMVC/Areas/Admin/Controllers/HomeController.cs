@@ -19,8 +19,6 @@ namespace CEC.WebMVC.Areas.Admin.Controllers
         public IActionResult Index()
         {
             dynamic model = new ExpandoObject();
-            var newestProducts = _unitOfWork.ProductRepository.Get(null, x => x.OrderByDescending(x => x.CreatedAt)).Take(10);
-            model.NewestProducts = newestProducts;
             return View(model);
         }
     }

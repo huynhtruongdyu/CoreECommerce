@@ -24,8 +24,6 @@ $('#formImageUpload').submit(function (e) {
     })
 });
 
-var simplemde = new SimpleMDE({ element: document.getElementById("description") });
-
 //Handle Camera
 {
     let camera_button = document.querySelector("#start-camera");

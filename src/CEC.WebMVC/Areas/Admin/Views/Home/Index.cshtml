@@ -3,42 +3,6 @@
     ViewData["Title"] = "Index";
     Layout = "~/Areas/Admin/Views/Shared/_Layout.cshtml";
 }
-<div class="row mt-2">
-    <div class="col-6">
-        <div class="card">
-            <div class="card-header">
-                Newest Products
-            </div>
-            <div class="card-body">
-                <div class="w-100" style="overflow-x: hidden;  display: flex;" id="divNewProducts">
-                    @foreach (var newProd in Model.NewestProducts)
-                    {
-                        <div style="  min-width: 200px;
-                                      min-height: 200px;
-                                      display: flex;
-                                      justify-content: center;
-                                      align-items: center;">
-                            <a asp-area="Admin" asp-controller="Products" asp-action="Detail" asp-route-id="@newProd.Id" class="h-100 w-100">
-                                @if (string.IsNullOrEmpty(newProd.ThumbnailUrl))
-                                {
-                                    <img src="~/images/no_image_placeholder.jpg" class="img-thumbnail h-100 w-100 " style="object-fit:cover"/>
-                                }
-                                else
-                                {
-                                    <img src="@newProd.ThumbnailUrl" class="img-thumbnail h-100 w-100" style="object-fit:cover" />
-                                }
-                            </a>
-                        </div>
-                    }
-                </div>
-            </div>
-        </div>
-    </div>
-    <div class="col-6">
-        <iframe src="/microviews/dashboard/newproducts" class="w-100 h-100" hidden></iframe>
-    </div>
-</div>
-
 @section Scripts{
     <script src="~/js/admin/home/home.js"></script>
 }
