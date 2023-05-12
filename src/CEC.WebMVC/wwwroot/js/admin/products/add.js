@@ -96,8 +96,4 @@ $('#formImageUpload').submit(function (e) {
 //Handle Product variants
 {
     let productVariantsContainer = $('#productVariantsContainer');
-    let $para = document.createElement("p");
-    para.innerHTML = "This is a paragraph.";
-    document.getElementById("productVariantsContainer").appendChild(para);
-/*    productVariantsContainer.append($para);*/
 }
