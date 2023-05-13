@@ -45,8 +45,6 @@
   </ItemGroup>
 
   <ItemGroup>
-    <Folder Include="Areas\MicroViews\Data\" />
-    <Folder Include="Areas\MicroViews\Models\" />
     <Folder Include="wwwroot\lib\simple-mde\" />
     <Folder Include="wwwroot\upload\" />
   </ItemGroup>

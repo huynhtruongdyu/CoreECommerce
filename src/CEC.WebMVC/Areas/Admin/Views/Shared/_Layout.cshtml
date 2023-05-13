@@ -28,28 +28,67 @@
                         <li class="nav-item">
                             <a class="nav-link active" aria-current="page" asp-area="Admin" asp-controller="" asp-action="">Dashboard</a>
                         </li>
-                        <li class="nav-item">
-                            <a class="nav-link" asp-area="Admin" asp-controller="Products" asp-action="Index">Products</a>
+                        <li class="nav-item dropdown">
+                            <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                                Masterdata
+                            </a>
+                            <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
+                                <li><a class="dropdown-item" href="#">Concurency</a></li>
+
+                                @*<li><hr class="dropdown-divider"></li>
+                                <li><a class="dropdown-item" href="#">Something else here</a></li>*@
+                            </ul>
+                        </li>
+                        <li class="nav-item dropdown">
+                            <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                                Management
+                            </a>
+                            <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
+                                <li><a class="dropdown-item" asp-area="Admin" asp-controller="Products" asp-action="Index">Products</a></li>
+                                <li><a class="dropdown-item" href="#">Collections</a></li>
+                                <li><a class="dropdown-item" href="#">Inventory</a></li>
+                                <li><a class="dropdown-item" href="#">Tranfers</a></li>
+                                <li><a class="dropdown-item" href="#">Gif cards</a></li>
+
+                                @*<li><hr class="dropdown-divider"></li>
+                                <li><a class="dropdown-item" href="#">Something else here</a></li>*@
+                            </ul>
+                        </li>
+                        <li class="nav-item dropdown">
+                            <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                                Store
+                            </a>
+                            <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
+                                <li><a class="dropdown-item" href="#">Area</a></li>
+                                <li><a class="dropdown-item" href="#">Branches</a></li>
+                                <li><a class="dropdown-item" href="#">Payment</a></li>
+
+                                <li><hr class="dropdown-divider"></li>
+                                <li><a class="dropdown-item" href="#">Config</a></li>
+
+                                @*<li><hr class="dropdown-divider"></li>
+                                <li><a class="dropdown-item" href="#">Something else here</a></li>*@
+                            </ul>
                         </li>
                         @*<li class="nav-item dropdown">
                             <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-                                Dropdown
+                                Online Store
                             </a>
                             <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
-                                <li><a class="dropdown-item" href="#">Action</a></li>
-                                <li><a class="dropdown-item" href="#">Another action</a></li>
-                                <li><hr class="dropdown-divider"></li>
-                                <li><a class="dropdown-item" href="#">Something else here</a></li>
+                                <li><a class="dropdown-item" href="#">Area</a></li>
+                                <li><a class="dropdown-item" href="#">Branches</a></li>
+                                <li><a class="dropdown-item" href="#">Payment</a></li>
+                                <li><a class="dropdown-item" href="#">Config</a></li>
                             </ul>
-                        </li>
-                        <li class="nav-item">
+                        </li>*@
+                        @*<li class="nav-item">
                             <a class="nav-link disabled">Disabled</a>
                         </li>*@
                     </ul>
-                    <form class="d-flex">
+                    @*<form class="d-flex">
                         <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search">
                         <button class="btn btn-outline-success" type="submit">Search</button>
-                    </form>
+                    </form>*@
                 </div>
             </div>
         </nav>

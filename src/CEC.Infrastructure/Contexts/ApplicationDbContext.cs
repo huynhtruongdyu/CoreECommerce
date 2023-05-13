@@ -20,6 +20,8 @@ namespace CEC.Infrastructure.Contexts
             _databaseProviderService = databaseProviderService;
         }
 
+        #region override methods
+
         public override int SaveChanges()
         {
             var entries = ChangeTracker
@@ -93,12 +95,19 @@ namespace CEC.Infrastructure.Contexts
             }
         }
 
+        #endregion override methods
+
+        #region DbSet
+
+        public DbSet<Product> Products { get; set; }
+        public DbSet<Currency> Currencies { get; set; }
+
+        #endregion DbSet
+
         public async Task ClearData()
         {
             this.Products.Clear();
             await this.SaveChangesAsync();
         }
-
-        public DbSet<Product> Products { get; set; }
     }
 }

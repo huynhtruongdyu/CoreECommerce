@@ -5,26 +5,27 @@ using System.Globalization;
 
 var builder = WebApplication.CreateBuilder(args);
 {
-    //builder.Services.AddResponseCompression(options =>
-    //{
-    //    options.EnableForHttps = true;
-    //});
+    builder.Services.AddResponseCompression(options =>
+    {
+        options.EnableForHttps = true;
+    });
     builder.Services.AddControllersWithViews();
     builder.Services.Configure<GlobalAppsettings>(x => builder.Configuration.Bind(x));
     builder.Services.RegisterService();
     builder.Services.AddAndMigrateTenantDatabases();
+    builder.Services.AddResponseCaching();
 }
 
 var app = builder.Build();
 {
-    //app.UseResponseCompression();
+    app.UseResponseCompression();
     if (!app.Environment.IsDevelopment())
     {
         app.UseExceptionHandler("/Home/Error");
         app.UseHsts();
     }
 
-    //app.UseHttpsRedirection();
+    app.UseHttpsRedirection();
     app.UseStaticFiles(new StaticFileOptions
     {
         OnPrepareResponse = ctx =>
@@ -55,6 +56,8 @@ var app = builder.Build();
         pattern: "{controller=Home}/{action=Index}/{id?}");
 
     #endregion Map endpoints
+
+    app.UseResponseCaching();
 
     app.Run();
 }
