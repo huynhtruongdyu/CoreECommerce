@@ -1,13 +1,13 @@
 ﻿using CEC.Application.Repositories;
 using CEC.Application.UnitOfWork;
 using CEC.Infrastructure.Contexts;
-using CEC.Infrastructure.Repositories;
 
 namespace CEC.Infrastructure.Repositories
 {
     public class UnitOfWork : IUnitOfWork
     {
         private IProductRepository _productRepository;
+        private ICurrencyRepository _currencyRepository;
 
         private readonly ApplicationDbContext _context;
 
@@ -15,6 +15,14 @@ namespace CEC.Infrastructure.Repositories
         {
             _context = context;
         }
+
+        public void Commit()
+        {
+            _context.SaveChanges();
+        }
+
+        public IProductRepository ProductRepository { get => _productRepository ??= new ProductRepository(_context); }
+        public ICurrencyRepository CurrencyRepository { get => _currencyRepository ??= new CurrencyRepository(_context); }
 
         #region Dispose
 
@@ -39,12 +47,5 @@ namespace CEC.Infrastructure.Repositories
         }
 
         #endregion Dispose
-
-        public void Commit()
-        {
-            _context.SaveChanges();
-        }
-
-        public IProductRepository ProductRepository { get => _productRepository ??= new ProductRepository(_context); }
     }
 }

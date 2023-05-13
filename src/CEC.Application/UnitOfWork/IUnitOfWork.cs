@@ -7,5 +7,6 @@ namespace CEC.Application.UnitOfWork
         void Commit();
 
         IProductRepository ProductRepository { get; }
+        ICurrencyRepository CurrencyRepository { get; }
     }
 }
