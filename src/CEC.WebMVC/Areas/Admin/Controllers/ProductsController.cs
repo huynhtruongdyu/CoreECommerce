@@ -1,5 +1,7 @@
-﻿using CEC.Application.UnitOfWork;
+﻿using CEC.Application.Services;
+using CEC.Application.UnitOfWork;
 using CEC.Infrastructure.Contexts;
+using CEC.Shared.Models;
 using CEC.Shared.Models.DTO;
 using CEC.WebMVC.Areas.Admin.Controllers.Base;
 
@@ -10,16 +12,13 @@ namespace CEC.WebMVC.Areas.Admin.Controllers
 {
     public class ProductsController : BaseAdminController
     {
-        private readonly IUnitOfWork _unitOfWork;
-
-        public ProductsController(IUnitOfWork unitOfWork)
+        public ProductsController(IUnitOfWork unitOfWork, IUserActivityLogService userActivityLogService) : base(unitOfWork, userActivityLogService)
         {
-            _unitOfWork = unitOfWork;
         }
 
         public async Task<IActionResult> Index()
         {
-            var rawProducts = await _unitOfWork.ProductRepository.GetAllAsync();
+            var rawProducts = await unitOfWork.ProductRepository.GetAllAsync();
             rawProducts = rawProducts.OrderByDescending(c => c.CreatedAt);
             var productsDto = new List<ProductDto>();
             foreach (var rawProduct in rawProducts)
@@ -46,8 +45,9 @@ namespace CEC.WebMVC.Areas.Admin.Controllers
         {
             if (ModelState.IsValid)
             {
-                await _unitOfWork.ProductRepository.InsertAsync(model.ToProduct());
-                _unitOfWork.Commit();
+                await unitOfWork.ProductRepository.InsertAsync(model.ToProduct());
+                unitOfWork.Commit();
+                userActivityLogService.Log(new UserAcionLog("Admin", EnumUserAcion.Add, model.ToProduct()));
                 return RedirectToAction("Index");
             }
             return View();
@@ -57,18 +57,19 @@ namespace CEC.WebMVC.Areas.Admin.Controllers
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> Delete(long id)
         {
-            var product = await _unitOfWork.ProductRepository.GetByIdAsync(id);
+            var product = await unitOfWork.ProductRepository.GetByIdAsync(id);
             if (product != null)
             {
                 product.IsDeleted = true;
-                _unitOfWork.Commit();
+                userActivityLogService.Log(new UserAcionLog("Admin", EnumUserAcion.Remove, product));
+                unitOfWork.Commit();
             }
             return RedirectToAction("Index");
         }
 
         public async Task<ActionResult> Detail(long id)
         {
-            var rawProduct = await _unitOfWork.ProductRepository.GetByIdAsync(id);
+            var rawProduct = await unitOfWork.ProductRepository.GetByIdAsync(id);
             var product = new ProductDetailModel(rawProduct);
             return View(product);
         }

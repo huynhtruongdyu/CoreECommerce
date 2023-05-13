@@ -1,4 +1,6 @@
-﻿using CEC.Application.UnitOfWork;
+﻿using CEC.Application.Services;
+using CEC.Application.UnitOfWork;
+using CEC.Infrastructure.Repositories;
 using CEC.WebMVC.Areas.Admin.Controllers.Base;
 
 using Microsoft.AspNetCore.Mvc;
@@ -10,18 +12,16 @@ namespace CEC.WebMVC.Areas.Admin.Controllers
 {
     public class HomeController : BaseAdminController
     {
-        private readonly IUnitOfWork _unitOfWork;
-
-        public HomeController(IUnitOfWork unitOfWork)
+        public HomeController(IUnitOfWork unitOfWork, IUserActivityLogService userActivityLogService) : base(unitOfWork, userActivityLogService)
         {
-            _unitOfWork = unitOfWork;
         }
 
-        [ResponseCache(Duration = 30, Location = ResponseCacheLocation.Any)]
+        [ResponseCache(Duration = 5, Location = ResponseCacheLocation.Any)]
         public IActionResult Index()
         {
             dynamic model = new ExpandoObject();
-            model.TotalProducts = _unitOfWork.ProductRepository.Get(x => x.Status == Domain.Enums.EnumProductStatus.Active).Count();
+            model.TotalProducts = unitOfWork.ProductRepository.Get(x => x.Status == Domain.Enums.EnumProductStatus.Active).Count();
+            model.UserActivities = userActivityLogService.GetLog();
             return View(model);
         }
     }

@@ -69,6 +69,8 @@ namespace CEC.Infrastructure.Extensions
             services.AddSingleton<IDatabaseProviderService, DatabaseProviderService>();
             services.AddScoped<IApplicationDbContext, ApplicationDbContext>();
             services.AddScoped<IUnitOfWork, UnitOfWork>();
+
+            services.AddSingleton<IUserActivityLogService, UserActivityLogService>();
         }
     }
 }

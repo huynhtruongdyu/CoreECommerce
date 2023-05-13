@@ -2,5 +2,6 @@
 {
     public interface IRootEntity : ISoftDeleteEntity
     {
+        string TryGetName();
     }
 }

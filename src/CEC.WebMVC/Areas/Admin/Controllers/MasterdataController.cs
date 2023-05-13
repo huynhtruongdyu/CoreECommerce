@@ -1,4 +1,5 @@
-﻿using CEC.Application.UnitOfWork;
+﻿using CEC.Application.Services;
+using CEC.Application.UnitOfWork;
 using CEC.Shared.Models.DTO;
 using CEC.WebMVC.Areas.Admin.Controllers.Base;
 
@@ -9,11 +10,8 @@ namespace CEC.WebMVC.Areas.Admin.Controllers
     //[Route("[controller]/[action]")]
     public class MasterdataController : BaseAdminController
     {
-        private readonly IUnitOfWork _unitOfWork;
-
-        public MasterdataController(IUnitOfWork unitOfWork)
+        public MasterdataController(IUnitOfWork unitOfWork, IUserActivityLogService userActivityLogService) : base(unitOfWork, userActivityLogService)
         {
-            _unitOfWork = unitOfWork;
         }
 
         #region Currency
@@ -21,7 +19,7 @@ namespace CEC.WebMVC.Areas.Admin.Controllers
         [Route("Currency")]
         public IActionResult Currency()
         {
-            var rawCurrencies = _unitOfWork.CurrencyRepository.GetAll();
+            var rawCurrencies = unitOfWork.CurrencyRepository.GetAll();
             var currenciesDto = new List<CurrencyDto>();
             foreach (var rawCurrency in rawCurrencies)
             {

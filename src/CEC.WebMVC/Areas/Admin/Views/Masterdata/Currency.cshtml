@@ -4,7 +4,25 @@
     Layout = "~/Areas/Admin/Views/Shared/_Layout.cshtml";
 }
 
-<h1>Currency</h1>
+<h1 class="mt-2">Currency</h1>
+
+<nav aria-label="breadcrumb">
+    <ol class="breadcrumb">
+        <li class="breadcrumb-item"><a href="/Admin">Home</a></li>
+        <li class="breadcrumb-item active" aria-current="page">Currency</li>
+    </ol>
+</nav>
+
+<div class="alert alert-secondary" role="alert">
+    <div class="row">
+        <div class="col-6">
+        </div>
+        <div class="col-6 d-flex flex-row-reverse">
+            <a class="btn btn-primary btn-lg" role="button" href="#">Add new</a>
+        </div>
+    </div>
+</div>
+
 <table class="table">
     <thead>
         <tr>
@@ -23,6 +41,18 @@
                     <td>@currency.Name</td>
                     <td>@currency.Code</td>
                     <td>@currency.Symbol</td>
+                    <td style="width:150px;">
+                        <div class="w-100 d-flex justify-content-center align-items-center">
+                            <div class="btn-group " role="group" aria-label="Basic example">
+                                <a role="button" class="btn btn-outline-secondary" >Detail</a>
+                                <button type="button" class="btn btn-outline-primary">Edit</button>
+                                <form method="post" >
+                                    <input name="id" value="" hidden />
+                                    <button type="submit" class="btn btn-outline-danger">Remove</button>
+                                </form>
+                            </div>
+                        </div>
+                    </td>
                 </tr>
             }
         }
