@@ -4,8 +4,9 @@ namespace CEC.Domain.Entities
 {
     public class Currency : AuditEntity, IRootEntity
     {
-        public Currency(string name, string code, string symbol)
+        public Currency(long id, string name, string code, string symbol)
         {
+            Id = id;
             Name = name;
             Code = code;
             Symbol = symbol;

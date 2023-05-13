@@ -19,8 +19,8 @@ namespace CEC.Infrastructure.EntityConfigurations
             builder.Property(x => x.Symbol).IsRequired();
             builder.HasData(new[]
             {
-                new Currency("Dong","VND","đ"),
-                new Currency("Dollars","USD","$"),
+                new Currency(1,"Dong","VND","đ"),
+                new Currency(2,"Dollars","USD","$"),
             });
         }
     }
