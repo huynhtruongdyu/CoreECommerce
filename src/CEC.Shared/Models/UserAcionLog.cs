@@ -22,7 +22,7 @@ namespace CEC.Shared.Models
 
         public override string ToString()
         {
-            return $"[{String.Format("{0:hh:mm:ss - dd:MM:yyyy}", CreatedAt)}][{Name}][{Action.GetDescription()}] - {Entity.TryGetName()}";
+            return $"[{String.Format("{0:hh:mm:ss dd:MM:yyyy} | {1} | {2}", CreatedAt, Name, Action.GetDescription())}] {Entity.TryGetName()}";
         }
     }
 

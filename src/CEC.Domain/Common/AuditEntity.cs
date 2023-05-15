@@ -1,6 +1,6 @@
 ﻿namespace CEC.Domain.Common
 {
-    public class AuditEntity
+    public abstract class AuditEntity
     {
         public long Id { get; set; }
 
@@ -11,7 +11,7 @@
 
         #region methods
 
-        public string TryGetName()
+        public virtual string TryGetName()
         {
             return (string)this.GetType().GetProperty("Name").GetValue(this, null);
         }
