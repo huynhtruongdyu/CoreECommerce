@@ -9,12 +9,12 @@ namespace CEC.WebMVC.Areas.Admin.Controllers.Base
     public abstract class BaseAdminController : Controller
     {
         protected readonly IUnitOfWork unitOfWork;
-        protected readonly IUserActivityLogService userActivityLogService;
+        protected readonly IServiceManagement serviceManagement;
 
-        protected BaseAdminController(IUnitOfWork unitOfWork, IUserActivityLogService userActivityLogService)
+        protected BaseAdminController(IUnitOfWork unitOfWork, IServiceManagement serviceManagement)
         {
             this.unitOfWork = unitOfWork;
-            this.userActivityLogService = userActivityLogService;
+            this.serviceManagement = serviceManagement;
         }
     }
 }

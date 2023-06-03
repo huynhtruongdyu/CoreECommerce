@@ -12,12 +12,12 @@ namespace CEC.Infrastructure.Contexts
 {
     public class ApplicationDbContext : DbContext, IApplicationDbContext
     {
-        private readonly IDatabaseProviderService _databaseProviderService;
+        private readonly IServiceManagement _serviceManagement;
 
-        public ApplicationDbContext(DbContextOptions options, IDatabaseProviderService databaseProviderService)
+        public ApplicationDbContext(DbContextOptions options, IServiceManagement serviceManagement)
             : base(options)
         {
-            _databaseProviderService = databaseProviderService;
+            _serviceManagement = serviceManagement;
         }
 
         #region override methods
@@ -73,8 +73,8 @@ namespace CEC.Infrastructure.Contexts
         {
             if (!optionsBuilder.IsConfigured)
             {
-                var dbProvider = _databaseProviderService.GetProvider();
-                var connectionString = _databaseProviderService.GetConnectionString();
+                var dbProvider = _serviceManagement.DatabaseProviderService.GetProvider();
+                var connectionString = _serviceManagement.DatabaseProviderService.GetConnectionString();
                 var assemblyName = InfrastructureAssemblyReference.Assembly.GetName().Name;
 
                 switch (dbProvider)

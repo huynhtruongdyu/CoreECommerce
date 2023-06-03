@@ -12,7 +12,7 @@ namespace CEC.WebMVC.Areas.Admin.Controllers
 {
     public class ProductsController : BaseAdminController
     {
-        public ProductsController(IUnitOfWork unitOfWork, IUserActivityLogService userActivityLogService) : base(unitOfWork, userActivityLogService)
+        public ProductsController(IUnitOfWork unitOfWork, IServiceManagement serviceManagement) : base(unitOfWork, serviceManagement)
         {
         }
 
@@ -47,7 +47,7 @@ namespace CEC.WebMVC.Areas.Admin.Controllers
             {
                 await unitOfWork.ProductRepository.InsertAsync(model.ToProduct());
                 unitOfWork.Commit();
-                userActivityLogService.Log(new UserAcionLog("Admin", EnumUserAcion.Add, model.ToProduct()));
+                serviceManagement.UserActivityLogService.Log(new UserAcionLog("Admin", EnumUserAcion.Add, model.ToProduct()));
                 return RedirectToAction("Index");
             }
             return View();
@@ -61,7 +61,7 @@ namespace CEC.WebMVC.Areas.Admin.Controllers
             if (product != null)
             {
                 product.IsDeleted = true;
-                userActivityLogService.Log(new UserAcionLog("Admin", EnumUserAcion.Remove, product));
+                serviceManagement.UserActivityLogService.Log(new UserAcionLog("Admin", EnumUserAcion.Remove, product));
                 unitOfWork.Commit();
             }
             return RedirectToAction("Index");

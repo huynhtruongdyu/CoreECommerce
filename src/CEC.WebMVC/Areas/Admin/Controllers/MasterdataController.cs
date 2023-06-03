@@ -10,7 +10,7 @@ namespace CEC.WebMVC.Areas.Admin.Controllers
     //[Route("[controller]/[action]")]
     public class MasterdataController : BaseAdminController
     {
-        public MasterdataController(IUnitOfWork unitOfWork, IUserActivityLogService userActivityLogService) : base(unitOfWork, userActivityLogService)
+        public MasterdataController(IUnitOfWork unitOfWork, IServiceManagement serviceManagement) : base(unitOfWork, serviceManagement)
         {
         }
 

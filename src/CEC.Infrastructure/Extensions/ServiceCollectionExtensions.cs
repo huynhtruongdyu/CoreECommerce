@@ -17,7 +17,8 @@ namespace CEC.Infrastructure.Extensions
         public static void AddAndMigrateTenantDatabases(this IServiceCollection services)
         {
             using var scope = services.BuildServiceProvider().CreateScope();
-            var databaseProviderService = scope.ServiceProvider.GetRequiredService<IDatabaseProviderService>();
+            var serviceManagement = scope.ServiceProvider.GetRequiredService<IServiceManagement>();
+            var databaseProviderService = serviceManagement.DatabaseProviderService;
 
             var connectionString = databaseProviderService.GetConnectionString();
             var provider = databaseProviderService.GetProvider();
@@ -66,11 +67,9 @@ namespace CEC.Infrastructure.Extensions
 
         public static void RegisterService(this IServiceCollection services)
         {
-            services.AddSingleton<IDatabaseProviderService, DatabaseProviderService>();
             services.AddScoped<IApplicationDbContext, ApplicationDbContext>();
             services.AddScoped<IUnitOfWork, UnitOfWork>();
-
-            services.AddSingleton<IUserActivityLogService, UserActivityLogService>();
+            services.AddScoped<IServiceManagement, ServiceManagement>();
         }
     }
 }
